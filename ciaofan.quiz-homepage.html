@@ -1531,6 +1531,160 @@
       color: rgba(255,255,255,0.82);
     }
 
+    .how-modal-overlay {
+      position: fixed;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      background: rgba(6, 4, 14, 0.72);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+      transition: opacity 0.25s ease, visibility 0.25s ease;
+      z-index: 1200;
+    }
+
+    .how-modal-overlay.is-open {
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
+    }
+
+    .how-modal {
+      width: min(100%, 640px);
+      max-width: 100%;
+      min-width: 0;
+      border-radius: 28px;
+      border: 1px solid rgba(255,255,255,0.12);
+      background:
+        radial-gradient(circle at top right, rgba(255, 98, 189, 0.18), transparent 28%),
+        radial-gradient(circle at bottom left, rgba(123, 77, 255, 0.18), transparent 34%),
+        linear-gradient(180deg, rgba(34, 20, 48, 0.98), rgba(18, 12, 30, 0.96));
+      box-shadow:
+        0 28px 70px rgba(0, 0, 0, 0.42),
+        0 0 0 1px rgba(255,255,255,0.03) inset,
+        0 0 40px rgba(255, 64, 170, 0.12);
+      overflow: hidden;
+      transform: translateY(18px);
+      opacity: 0;
+      transition: transform 0.25s ease, opacity 0.25s ease;
+    }
+
+    .how-modal-overlay.is-open .how-modal {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    .how-modal-head {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 24px 24px 14px;
+    }
+
+    .how-modal-kicker {
+      color: #ff9dde;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      font-weight: 800;
+      margin-bottom: 8px;
+    }
+
+    .how-modal-title {
+      margin: 0;
+      font-size: 32px;
+      line-height: 1.05;
+      font-weight: 900;
+      color: #fff;
+    }
+
+    .how-modal-close {
+      width: 42px;
+      height: 42px;
+      flex: 0 0 42px;
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,0.12);
+      background: rgba(255,255,255,0.05);
+      color: #fff;
+      font-size: 20px;
+      font-weight: 700;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 0 18px rgba(255, 78, 205, 0.08);
+      touch-action: manipulation;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .how-modal-close:hover {
+      transform: translateY(-1px);
+      background: rgba(255,255,255,0.08);
+    }
+
+    .how-modal-body {
+      display: grid;
+      gap: 12px;
+      padding: 0 24px 24px;
+    }
+
+    .how-modal-intro {
+      font-size: 15px;
+      line-height: 1.65;
+      color: rgba(255,255,255,0.84);
+    }
+
+    .how-modal-grid {
+      display: grid;
+      gap: 12px;
+    }
+
+    .how-step-card {
+      padding: 16px 16px 15px;
+      border-radius: 20px;
+      border: 1px solid rgba(255,255,255,0.08);
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0.045), rgba(255,255,255,0.028)),
+        linear-gradient(135deg, rgba(255, 78, 205, 0.08), rgba(123, 77, 255, 0.08));
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.03);
+    }
+
+    .how-step-index {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 30px;
+      height: 30px;
+      border-radius: 999px;
+      padding: 0 10px;
+      margin-bottom: 10px;
+      font-size: 12px;
+      font-weight: 900;
+      color: #fff;
+      background: linear-gradient(90deg, var(--pink-2), var(--violet-2));
+      box-shadow: 0 10px 22px rgba(255, 50, 150, 0.18);
+    }
+
+    .how-step-title {
+      margin: 0 0 6px 0;
+      font-size: 18px;
+      line-height: 1.2;
+      font-weight: 800;
+      color: #fff;
+    }
+
+    .how-step-text {
+      margin: 0;
+      font-size: 14px;
+      line-height: 1.62;
+      color: rgba(255,255,255,0.8);
+    }
+
     @keyframes spin {
       from { transform: rotate(0deg); }
       to { transform: rotate(360deg); }
@@ -1624,10 +1778,68 @@
       .main-result-btn,
       .secondary-btn,
       .coach-chip { width: 100%; }
+      .how-modal-overlay {
+        padding: 16px;
+        align-items: flex-end;
+      }
+      .how-modal {
+        width: 100%;
+        border-radius: 24px;
+      }
+      .how-modal-head,
+      .how-modal-body {
+        padding-left: 18px;
+        padding-right: 18px;
+      }
+      .how-modal-head {
+        padding-top: 18px;
+        padding-bottom: 12px;
+      }
+      .how-modal-body {
+        padding-bottom: 18px;
+      }
+      .how-modal-title {
+        font-size: 26px;
+      }
+      .how-step-card {
+        padding: 14px;
+      }
     }
   </style>
 </head>
 <body>
+  <div class="how-modal-overlay" id="howItWorksModal" aria-hidden="true">
+    <div class="how-modal" role="dialog" aria-modal="true" aria-labelledby="howItWorksTitle">
+      <div class="how-modal-head">
+        <div>
+          <div class="how-modal-kicker">Premium Overview</div>
+          <h2 class="how-modal-title" id="howItWorksTitle">Come funziona</h2>
+        </div>
+        <button class="how-modal-close" type="button" id="howItWorksClose" aria-label="Chiudi modal">×</button>
+      </div>
+      <div class="how-modal-body">
+        <div class="how-modal-intro">Il test ti aiuta a capire 3 cose:</div>
+        <div class="how-modal-grid">
+          <article class="how-step-card">
+            <div class="how-step-index">1</div>
+            <h3 class="how-step-title">Dove sei ora</h3>
+            <p class="how-step-text">Valuta il tuo profilo e il tuo livello attuale.</p>
+          </article>
+          <article class="how-step-card">
+            <div class="how-step-index">2</div>
+            <h3 class="how-step-title">Cosa stai perdendo</h3>
+            <p class="how-step-text">Individua i punti che bloccano crescita e guadagni.</p>
+          </article>
+          <article class="how-step-card">
+            <div class="how-step-index">3</div>
+            <h3 class="how-step-title">Cosa puoi migliorare subito</h3>
+            <p class="how-step-text">Ottieni indicazioni pratiche per aumentare i risultati.</p>
+          </article>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <div class="page-shell" id="pageTop">
     <div class="topbar">
       <div class="brand-wrap">
@@ -2353,7 +2565,19 @@
     }
 
     function showHowItWorks() {
-      alert("Il test analizza profilo, monetizzazione, conversione e fidelizzazione. Alla fine ottieni un earnings calculator, una roadmap pratica e card coach collegate a FAQ e Ciaofan.help.");
+      const modal = document.getElementById("howItWorksModal");
+      if (!modal) return;
+      modal.classList.add("is-open");
+      modal.setAttribute("aria-hidden", "false");
+      document.body.style.overflow = "hidden";
+    }
+
+    function closeHowItWorks() {
+      const modal = document.getElementById("howItWorksModal");
+      if (!modal) return;
+      modal.classList.remove("is-open");
+      modal.setAttribute("aria-hidden", "true");
+      document.body.style.overflow = "";
     }
 
     function renderQuestion() {
@@ -3267,6 +3491,27 @@
         cards
       };
     }
+
+    const howItWorksModal = document.getElementById("howItWorksModal");
+    const howItWorksClose = document.getElementById("howItWorksClose");
+
+    if (howItWorksClose) {
+      howItWorksClose.addEventListener("click", closeHowItWorks);
+    }
+
+    if (howItWorksModal) {
+      howItWorksModal.addEventListener("click", function (event) {
+        if (event.target === howItWorksModal) {
+          closeHowItWorks();
+        }
+      });
+    }
+
+    document.addEventListener("keydown", function (event) {
+      if (event.key === "Escape") {
+        closeHowItWorks();
+      }
+    });
 
     bindTouchButtons(document);
   </script>
