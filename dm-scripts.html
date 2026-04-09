@@ -1660,6 +1660,36 @@
       }
     }
 
+    @media (max-width: 600px) and (orientation: portrait) {
+      .phase-section-card,
+      .phase-section-card .filter-label,
+      .phase-section-card .phase-grid,
+      .phase-section-card .phase-card {
+        width: 100%;
+        max-width: 100%;
+        min-width: 0;
+        box-sizing: border-box;
+      }
+
+      .phase-section-card {
+        overflow: hidden;
+      }
+
+      .phase-section-card .phase-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        overflow-x: visible;
+        overflow-y: visible;
+        gap: 8px;
+        padding-right: 0;
+        padding-bottom: 0;
+      }
+
+      .phase-section-card .phase-card {
+        flex: none;
+      }
+    }
+
     @media (prefers-reduced-motion: reduce) {
       html {
         scroll-behavior: auto;
