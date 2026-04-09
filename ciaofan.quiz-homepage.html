@@ -70,6 +70,8 @@
       align-items: center;
       gap: 14px;
       min-width: 0;
+      max-width: 100%;
+      flex-wrap: wrap;
     }
 
     .brand-home {
@@ -81,6 +83,8 @@
       display: inline-flex;
       align-items: center;
       justify-content: center;
+      position: relative;
+      z-index: 5;
     }
 
     .top-actions {
@@ -91,18 +95,65 @@
       flex-wrap: wrap;
     }
 
-    .brand-wrap img {
-      width: 210px;
-      height: auto;
+    .logo-shell {
+      position: relative;
+      width: 360px;
+      max-width: 100%;
+      min-height: 92px;
+      padding: 12px 22px;
+      border-radius: 16px;
+      border: 1px solid rgba(255,255,255,0.1);
+      background: linear-gradient(135deg, rgba(255, 78, 205, 0.12), rgba(123, 77, 255, 0.14));
+      box-shadow: 0 0 0 1px rgba(255,255,255,0.02) inset, 0 20px 44px rgba(0, 0, 0, 0.28);
+      overflow: hidden;
+      isolation: isolate;
+    }
+
+    .brand-fallback {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      min-height: 64px;
+      border-radius: 12px;
+      font-size: 12px;
+      font-weight: 900;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.88);
+      background: rgba(255,255,255,0.04);
+      transition: opacity .18s ease;
+    }
+
+    .logo-shell img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      max-width: 100%;
+      object-fit: contain;
+      padding: 10px 16px;
       display: block;
       filter: drop-shadow(0 0 12px rgba(255, 80, 200, 0.28));
     }
 
+    .logo-shell.has-logo .brand-fallback {
+      opacity: 0;
+    }
+
     .brand-copy {
-      font-size: 12px;
-      color: rgba(255,255,255,0.68);
-      line-height: 1.45;
-      max-width: 210px;
+      font-size: 16px;
+      font-weight: 900;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      color: #fff;
+      background: linear-gradient(90deg,#ffd6f1 0%,#ff7ac8 45%,#8ed8ff 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-shadow: 0 0 18px rgba(255,80,200,0.18);
+      max-width: 100%;
+      overflow-wrap: anywhere;
     }
 
     .top-btn, .main-cta, .ghost-cta, .back-btn, .main-result-btn, .secondary-btn, .tool-btn, .level-jump-btn {
@@ -1507,7 +1558,7 @@
 
       .hero-title { font-size: 38px; }
       .question-text { font-size: 28px; }
-      .brand-wrap img { width: 170px; }
+      .logo-shell { width: 300px; min-height: 78px; }
     }
 
     @media (max-width: 640px) {
@@ -1521,11 +1572,17 @@
         width: 100%;
         justify-content: center;
       }
-      .brand-wrap img {
-        width: 140px;
-        max-width: 100%;
+      .logo-shell {
+        display: inline-flex;
+        width: min(90vw, 320px);
+        min-height: 80px;
       }
-      .brand-copy { display: none; }
+      .brand-copy {
+        width: 100%;
+        text-align: center;
+        font-size: 15px;
+        letter-spacing: 0.14em;
+      }
       .top-actions {
         width: 100%;
       }
