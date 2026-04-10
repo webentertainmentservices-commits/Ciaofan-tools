@@ -321,8 +321,8 @@
     footer{padding:18px 4px 12px;text-align:center;color:rgba(255,255,255,.52);font-size:13px}
     @media (max-width:1080px){.meter-wrap,.why-grid,.form-shell{grid-template-columns:1fr}}
     @media (max-width:980px){.hero,.analysis-grid,.report-grid,.payment-grid{grid-template-columns:1fr}}
-    @media (max-width:768px){.page-shell{padding:12px}.topbar{padding:14px}.logo-shell{width:320px;min-height:84px}.brand-copy{width:100%}.top-actions{width:100%;display:grid;grid-template-columns:1fr}.nav-link,.nav-cta,.primary-btn,.secondary-btn,.submit-btn{width:100%}.hero,.section-inner,.form-card,.final-cta{padding:18px}.hero-copy{padding:8px 0 14px}.hero-copy::after{right:-26px;bottom:-12px;width:360px;max-width:62%;opacity:.86}.hero-card{padding:22px}.form-grid,.payment-grid{grid-template-columns:1fr}.analysis-visual-shell{padding:16px}.analysis-box{max-width:none}.analysis-visual-note{font-size:11px}.headline-glow{left:-10px;top:8px;width:280px;height:170px}}
-    @media (max-width:520px){.logo-shell{width:100%;min-height:78px}.hero-title,.section-title,.final-cta h2{overflow-wrap:anywhere}.hero-sub,.section-copy,.analysis-card p,.payment-option-copy,.meter-copy,.final-copy{overflow-wrap:anywhere}}
+    @media (max-width:768px){.page-shell{padding:12px}.topbar{padding:14px}.brand-wrap{width:100%;justify-content:center;gap:10px}.brand-home{width:100%;justify-content:center}.logo-shell{width:min(280px,82vw);min-height:92px;margin:0 auto}.logo-shell img{padding:12px 22px}.brand-copy{width:100%;text-align:center}.top-actions{width:100%;display:grid;grid-template-columns:1fr}.nav-link,.nav-cta,.primary-btn,.secondary-btn,.submit-btn{width:100%}.hero,.section-inner,.form-card,.final-cta{padding:18px}.hero-copy{padding:8px 0 180px}.hero-copy::after{right:-8px;bottom:-6px;width:320px;max-width:74%;background-position:center bottom;opacity:.9}.hero-card{padding:22px}.form-grid,.payment-grid{grid-template-columns:1fr}.analysis-visual-shell{padding:16px}.analysis-box{max-width:none}.analysis-visual-note{font-size:11px}.headline-glow{left:-10px;top:8px;width:280px;height:170px}}
+    @media (max-width:520px){.logo-shell{width:min(250px,78vw);min-height:88px}.logo-shell img{padding:12px 18px}.brand-copy{font-size:15px}.hero-copy{padding:8px 0 210px}.hero-copy::after{right:50%;bottom:-2px;width:290px;max-width:none;transform:translateX(50%);background-position:center bottom;opacity:.88}.hero-title,.section-title,.final-cta h2{overflow-wrap:anywhere}.hero-sub,.section-copy,.analysis-card p,.payment-option-copy,.meter-copy,.final-copy{overflow-wrap:anywhere}}
   </style>
 </head>
 <body>
@@ -517,7 +517,7 @@
               </div>
               <p class="analysis-visual-note">Analisi completa del valore percepito e della monetizzazione del profilo</p>
               <div class="bottom-banner">
-                <img src="ciaofan-premium-coach-report.png" alt="Report personalizzato Premium Coach Ciaofan">
+              <img src="ciaofan-premium-coach-report.png" alt="Report personalizzato Premium Coach Ciaofan">
               </div>
             </div>
           </article>
@@ -657,6 +657,8 @@
 
       if (!form || !submitBtn || !paymentInput) return;
 
+      submitBtn.disabled = false;
+
       function typeText(target, text, speed, callback) {
         let index = 0;
         target.textContent = "";
@@ -701,14 +703,30 @@
         run(0);
       }
 
-      form.addEventListener("submit", function (event) {
-        event.preventDefault();
+      function getSelectedPaymentMethod() {
+        const activeOption = document.querySelector(".payment-option.active");
+        if (activeOption && activeOption.dataset.payment) {
+          return activeOption.dataset.payment;
+        }
+        return paymentInput.value || "";
+      }
 
-        const nickname = document.getElementById("nickname").value || "";
-        const email = document.getElementById("email").value || "";
-        const profile = document.getElementById("profile").value || "";
-        const notes = document.getElementById("notes").value || "";
-        const paymentMethod = paymentInput.value || "";
+      function handlePremiumCoachSubmit(event) {
+        if (event) event.preventDefault();
+
+        const nicknameField = document.getElementById("nickname");
+        const emailField = document.getElementById("email");
+        const profileField = document.getElementById("profile");
+        const notesField = document.getElementById("notes");
+
+        const nickname = nicknameField ? nicknameField.value.trim() : "";
+        const email = emailField ? emailField.value.trim() : "";
+        const profile = profileField ? profileField.value.trim() : "";
+        const notes = notesField ? notesField.value.trim() : "";
+        const paymentMethod = getSelectedPaymentMethod();
+
+        paymentInput.value = paymentMethod;
+        submitBtn.disabled = false;
 
         const subject = "Richiesta Premium Coach Ciaofan";
         const body =
@@ -734,7 +752,9 @@ ${notes}`;
         };
 
         window.location.href = mailtoLink;
-      });
+      }
+
+      form.onsubmit = handlePremiumCoachSubmit;
     })();
   </script>
 </body>
