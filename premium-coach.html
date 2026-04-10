@@ -315,7 +315,13 @@
     .payment-option.active{border-color:rgba(255,255,255,.16);box-shadow:0 0 0 1px rgba(255,255,255,.04) inset,0 0 26px rgba(255,47,151,.12);background:linear-gradient(180deg,rgba(255,255,255,.07),rgba(255,255,255,.04)),linear-gradient(135deg,rgba(255,47,151,.12),rgba(123,77,255,.12))}.payment-option-head{display:flex;align-items:center;justify-content:space-between;gap:10px;width:100%}
     .payment-icon{width:46px;height:46px;border-radius:14px;display:inline-flex;align-items:center;justify-content:center;background:linear-gradient(135deg,rgba(255,47,151,.24),rgba(123,77,255,.22));border:1px solid rgba(255,255,255,.12);box-shadow:0 0 18px rgba(255,47,151,.14);color:#fff}.payment-dot{width:14px;height:14px;border-radius:999px;border:1px solid rgba(255,255,255,.2);background:rgba(255,255,255,.04);box-shadow:inset 0 0 0 3px transparent}.payment-option.active .payment-dot{background:rgba(255,255,255,.08);box-shadow:inset 0 0 0 4px #ff4ca5;border-color:rgba(255,255,255,.14)}.payment-option-title{font-size:18px;font-weight:900;line-height:1.1}.payment-option-copy{font-size:13px;line-height:1.62;color:var(--text-soft)}.payment-hidden{position:absolute;opacity:0;pointer-events:none;width:1px;height:1px}
     .form-footnote{margin-top:16px;font-size:14px;line-height:1.6;color:var(--text-soft)}.submit-row{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-top:22px}.submit-btn[disabled]{opacity:.72;cursor:wait}
-    .success-box{display:none;margin-top:22px;padding:22px;border-radius:18px;border:1px solid rgba(155,255,210,.22);background:linear-gradient(135deg,rgba(80,255,180,.08),rgba(255,255,255,.03));color:#ecfff6}.success-box.is-visible{display:block}.success-box strong{display:block;margin-bottom:10px;font-size:18px}.success-box p{margin:0;line-height:1.72;color:#f0fff7}
+    .submit-helper,.submit-fallback,.email-link,.success-box{font-size:14px;line-height:1.7}
+    .submit-helper{margin-top:16px;color:var(--text-soft)}
+    .submit-fallback{margin-top:12px;color:var(--text-soft)}
+    .email-link{display:inline-flex;margin-top:8px;font-weight:800;color:#ff4fd8;text-decoration:none;background:linear-gradient(90deg,#ff4fd8 0%,#a17fff 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+    .email-link:hover{text-decoration:underline}
+    .success-box{display:none;margin-top:16px;padding:16px 18px;border-radius:16px;border:1px solid rgba(255,255,255,.1);background:linear-gradient(135deg,rgba(255,79,216,.08),rgba(123,77,255,.06));color:#ffe8f8}
+    .success-box.is-visible{display:block}
     .final-cta{position:relative;padding:32px 30px;display:flex;align-items:center;justify-content:space-between;gap:18px;flex-wrap:wrap;background:radial-gradient(circle at top right,rgba(255,98,189,.14),transparent 34%),radial-gradient(circle at bottom left,rgba(123,77,255,.1),transparent 28%),linear-gradient(180deg,rgba(29,18,46,.98),rgba(20,12,32,.96));overflow:hidden}.final-cta::before{content:"";position:absolute;inset:auto -10% -40% auto;width:260px;height:260px;border-radius:999px;background:radial-gradient(circle,rgba(255,47,151,.18),transparent 70%);filter:blur(18px);pointer-events:none}.final-cta>*{position:relative;z-index:1}.final-cta h2{margin-bottom:10px;font-size:clamp(30px,4vw,42px);line-height:1.02;letter-spacing:-.04em}
     .reveal{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s ease;will-change:opacity,transform}.reveal.is-visible{opacity:1;transform:translateY(0)}
     footer{padding:18px 4px 12px;text-align:center;color:rgba(255,255,255,.52);font-size:13px}
@@ -576,11 +582,11 @@
               <div class="submit-row">
                 <button class="submit-btn" id="submitBtn" type="submit"><span>Invia richiesta Premium Coach</span></button>
               </div>
+              <p class="submit-helper">Dopo il click si aprirà la tua app email con la richiesta già compilata.<br />Per completare la richiesta, premi “Invia” nell’email.</p>
+              <p class="submit-fallback">Se il tuo dispositivo non apre automaticamente l’email, puoi inviare la richiesta manualmente a:</p>
+              <a href="mailto:info@wes.company" class="email-link">info@wes.company</a>
+              <div class="success-box" id="successBox" aria-live="polite">Richiesta pronta. Controlla la tua email aperta e premi “Invia” per completare.</div>
             </form>
-            <div class="success-box" id="successBox" aria-live="polite">
-              <strong>Richiesta Coach Premium inviata con successo ✔</strong>
-              <p>Riceverai una risposta via email entro 24h con i dettagli e il link per il pagamento.<br /><br />Il report personalizzato verrà inviato solo dopo la conferma del pagamento.<br /><br />Controlla anche la cartella spam/promozioni.</p>
-            </div>
           </article>
         </div>
       </section>
@@ -750,6 +756,10 @@ ${notes}`;
           recipient: "info@wes.company",
           subject: subject
         };
+
+        if (successBox) {
+          successBox.classList.add("is-visible");
+        }
 
         window.location.href = mailtoLink;
       }
