@@ -180,6 +180,9 @@
     .modal-dialog{width:min(100%,760px);max-height:calc(100dvh - 32px);overflow-y:auto;overflow-x:hidden;border-radius:28px;border:1px solid rgba(255,255,255,.12);background:radial-gradient(circle at top center,rgba(255,78,205,.18),transparent 42%),linear-gradient(180deg,rgba(53,25,75,.98),rgba(27,15,42,.98));box-shadow:0 24px 70px rgba(0,0,0,.44),0 0 34px rgba(255,47,151,.1),inset 0 1px 0 rgba(255,255,255,.08);padding:18px;transform:translateY(16px) scale(.98);transition:transform .24s ease;-webkit-overflow-scrolling:touch;touch-action:pan-y}
     .modal-overlay.is-open .modal-dialog{transform:translateY(0) scale(1)}
     .modal-frame{border-radius:22px;border:1px solid rgba(255,255,255,.08);background:linear-gradient(180deg,rgba(255,255,255,.04),rgba(255,255,255,.015));padding:18px;background-color:rgba(28,18,44,.96)}
+    .overlay-for-example-modal{position:fixed;inset:0;overflow:hidden}
+    .example-modal-panel{position:relative;width:calc(100vw - 24px);max-width:760px;max-height:92dvh;margin:12px auto;overflow-y:auto !important;overflow-x:hidden !important;-webkit-overflow-scrolling:touch;touch-action:pan-y;overscroll-behavior:contain;border-radius:24px}
+    .example-modal-content{height:auto;min-height:auto;overflow:visible;padding-bottom:40px}
     .modal-top{position:relative;display:flex;align-items:flex-start;justify-content:space-between;gap:16px;margin-bottom:16px;padding-right:60px}
     .modal-title{margin:0;font-size:clamp(30px,4.5vw,42px);line-height:1.02;letter-spacing:-.04em}
     .modal-close{position:sticky;top:0;right:0;flex:0 0 auto;align-self:flex-start;margin-left:auto;width:46px;height:46px;border-radius:16px;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.05);color:#fff;font-size:24px;font-weight:700;z-index:4}
@@ -206,7 +209,7 @@
     @supports (-webkit-touch-callout:none){html,body,.page-shell{background-color:#09060f}.topbar,.panel,.hero-side,.level-card,.name-card,.advantage-strip,.modal-frame,.modal-dialog{background-color:rgba(18,12,30,.96)}}
     @media (max-width:1080px){.hero{grid-template-columns:1fr}}
     @media (max-width:900px){.level-grid,.names-grid,.simulator-grid,.example-mini-grid{grid-template-columns:1fr}}
-    @media (max-width:768px){.page-shell{padding:12px}.topbar{padding:14px}.brand-wrap{width:100%;justify-content:center;gap:10px}.brand-home{width:100%;justify-content:center}.logo-shell{width:min(280px,82vw);min-height:92px;margin:0 auto}.logo-shell img{padding:12px 22px}.brand-copy{width:100%;text-align:center}.top-actions{width:100%;display:grid;grid-template-columns:1fr}.nav-link,.nav-cta,.primary-btn,.level-btn,.modal-cta{width:100%}.hero,.section-inner{padding:18px}.cta-panel{padding:24px}.hero-copy{padding:8px 0}.hero-side{padding:22px}.level-title-row{align-items:flex-start}.coin-stream{gap:4px;min-width:48px}.coin-icon{width:18px;height:18px;font-size:10px;animation:none}.example-group::before,.example-group::after,.example-card::before,.level-headbox::after{display:none}.errors-panel,.monetization-panel,.naming-panel{grid-template-columns:1fr}.errors-visual,.monetization-visual,.naming-visual{min-height:auto;padding-top:6px}.error-symbol.alert{width:48px;height:48px;font-size:24px;animation:none}.error-symbol.mini{width:36px;height:36px;font-size:18px;animation:none}.money-symbol.main{width:48px;height:48px;font-size:24px;animation:none}.money-symbol.mini{width:36px;height:36px;font-size:17px;animation:none}.naming-symbol.main{width:48px;height:48px;font-size:22px;animation:none}.naming-symbol.mini{width:36px;height:36px;font-size:16px;animation:none}.modal-overlay{top:0;left:0;right:0;bottom:0;align-items:stretch;padding:0;overflow:hidden}.modal-dialog{width:100%;height:100%;min-height:100vh;max-height:none;overflow-y:auto;overflow-x:hidden;-webkit-overflow-scrolling:touch;padding:12px 12px 40px;border-radius:0}.modal-frame{min-height:100%;padding:14px;border-radius:18px}.modal-title{font-size:clamp(24px,8vw,32px)}.modal-close{width:40px;height:40px;border-radius:14px;font-size:22px}.modal-top{padding-right:52px}.modal-image-shell img{height:210px}.modal-actions{display:block}.naming-section .section-inner{padding:18px}.sim-actions,.sim-results{grid-template-columns:1fr}.sim-actions{display:grid}.sim-result{padding:16px 18px}}
+    @media (max-width:768px){.page-shell{padding:12px}.topbar{padding:14px}.brand-wrap{width:100%;justify-content:center;gap:10px}.brand-home{width:100%;justify-content:center}.logo-shell{width:min(280px,82vw);min-height:92px;margin:0 auto}.logo-shell img{padding:12px 22px}.brand-copy{width:100%;text-align:center}.top-actions{width:100%;display:grid;grid-template-columns:1fr}.nav-link,.nav-cta,.primary-btn,.level-btn,.modal-cta{width:100%}.hero,.section-inner{padding:18px}.cta-panel{padding:24px}.hero-copy{padding:8px 0}.hero-side{padding:22px}.level-title-row{align-items:flex-start}.coin-stream{gap:4px;min-width:48px}.coin-icon{width:18px;height:18px;font-size:10px;animation:none}.example-group::before,.example-group::after,.example-card::before,.level-headbox::after{display:none}.errors-panel,.monetization-panel,.naming-panel{grid-template-columns:1fr}.errors-visual,.monetization-visual,.naming-visual{min-height:auto;padding-top:6px}.error-symbol.alert{width:48px;height:48px;font-size:24px;animation:none}.error-symbol.mini{width:36px;height:36px;font-size:18px;animation:none}.money-symbol.main{width:48px;height:48px;font-size:24px;animation:none}.money-symbol.mini{width:36px;height:36px;font-size:17px;animation:none}.naming-symbol.main{width:48px;height:48px;font-size:22px;animation:none}.naming-symbol.mini{width:36px;height:36px;font-size:16px;animation:none}.modal-overlay{top:0;left:0;right:0;bottom:0;align-items:stretch;padding:0;overflow:hidden}.modal-dialog{width:100%;height:100%;min-height:100vh;max-height:none;overflow-y:auto;overflow-x:hidden;-webkit-overflow-scrolling:touch;padding:12px 12px 40px;border-radius:0}.modal-frame{min-height:100%;padding:14px;border-radius:18px}.overlay-for-example-modal{position:fixed;top:0;left:0;right:0;bottom:0;align-items:flex-start;padding:0;overflow:hidden}.example-modal-panel{width:calc(100vw - 24px) !important;max-width:760px;max-height:92dvh !important;height:auto !important;min-height:auto !important;margin:12px auto !important;overflow-y:auto !important;overflow-x:hidden !important;-webkit-overflow-scrolling:touch;touch-action:pan-y;overscroll-behavior:contain;border-radius:24px !important;padding:12px !important}.example-modal-content{height:auto !important;min-height:auto !important;overflow:visible !important;padding-bottom:40px}.modal-title{font-size:clamp(24px,8vw,32px)}.modal-close{width:40px;height:40px;border-radius:14px;font-size:22px}.modal-top{padding-right:52px}.modal-image-shell img{height:210px}.modal-actions{display:block}.naming-section .section-inner{padding:18px}.sim-actions,.sim-results{grid-template-columns:1fr}.sim-actions{display:grid}.sim-result{padding:16px 18px}}
     .page-shell{isolation:isolate}
     body::before,body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:-1}
     body::before{background:radial-gradient(circle at 16% 18%,rgba(255,71,174,.08),transparent 24%),radial-gradient(circle at 82% 14%,rgba(87,200,255,.07),transparent 20%),linear-gradient(120deg,rgba(255,255,255,.03),transparent 24%,transparent 76%,rgba(255,255,255,.02))}
@@ -889,9 +892,9 @@
 
     <footer>Ciaofan Growth Lab &middot; Guida Abbonamenti</footer>
 
-  <div class="modal-overlay" id="softModal" aria-hidden="true">
-    <div class="modal-dialog" role="dialog" aria-modal="true" aria-labelledby="softTitle">
-      <div class="modal-frame">
+  <div class="modal-overlay overlay-for-example-modal" id="softModal" aria-hidden="true">
+    <div class="modal-dialog example-modal-panel" role="dialog" aria-modal="true" aria-labelledby="softTitle">
+      <div class="modal-frame example-modal-content">
         <div class="modal-top">
           <div>
             <div class="modal-kicker">Livello Soft</div>
@@ -910,9 +913,9 @@
     </div>
   </div>
 
-  <div class="modal-overlay" id="mediumModal" aria-hidden="true">
-    <div class="modal-dialog" role="dialog" aria-modal="true" aria-labelledby="mediumTitle">
-      <div class="modal-frame">
+  <div class="modal-overlay overlay-for-example-modal" id="mediumModal" aria-hidden="true">
+    <div class="modal-dialog example-modal-panel" role="dialog" aria-modal="true" aria-labelledby="mediumTitle">
+      <div class="modal-frame example-modal-content">
         <div class="modal-top">
           <div>
             <div class="modal-kicker">Livello Medium</div>
@@ -931,9 +934,9 @@
     </div>
   </div>
 
-  <div class="modal-overlay" id="premiumModal" aria-hidden="true">
-    <div class="modal-dialog" role="dialog" aria-modal="true" aria-labelledby="premiumTitle">
-      <div class="modal-frame">
+  <div class="modal-overlay overlay-for-example-modal" id="premiumModal" aria-hidden="true">
+    <div class="modal-dialog example-modal-panel" role="dialog" aria-modal="true" aria-labelledby="premiumTitle">
+      <div class="modal-frame example-modal-content">
         <div class="modal-top">
           <div>
             <div class="modal-kicker">Livello Premium</div>
