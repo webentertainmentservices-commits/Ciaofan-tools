@@ -1,0 +1,28 @@
+{
+  "routes": [
+    {
+      "src": "/privacy-policy",
+      "dest": "/privacy-policy.html"
+    },
+    {
+      "src": "/cookie-policy",
+      "dest": "/cookie-policy.html"
+    },
+    {
+      "src": "/cookies",
+      "dest": "/cookie-policy.html"
+    },
+    {
+      "src": "/terms",
+      "dest": "/terms.html"
+    },
+    {
+      "src": "/impressum",
+      "dest": "/impressum.html"
+    },
+    {
+      "src": "/referral",
+      "dest": "/referral.html"
+    }
+  ]
+}
